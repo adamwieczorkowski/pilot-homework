@@ -1,0 +1,27 @@
+<h1>List of pending Payment Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_requests.each do |pr| %>
+      <tr>
+        <td><%= "#{pr.amount} #{pr.currency}" %></td>
+        <td><%= pr.description %></td>
+        <td><%= pr.status %></td>
+        <td>
+          <%= link_to "Accept", accept_payment_request_path(id: pr.id) %>
+          <%= link_to "Reject", reject_payment_request_path(id: pr.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
