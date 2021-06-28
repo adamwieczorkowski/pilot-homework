@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  web:
+  web: &default
     build:
       context: .
     command: bin/start.sh
@@ -26,6 +26,31 @@ services:
     volumes:
       - pgdata:/pgdata
 
+  karafka:
+    <<: *default
+    ports: []
+    command: bin/karafka server
+    links:
+      - kafka
+    external_links: []
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    hostname: kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - default
+      - pilot_network
+
 volumes:
   bundle:
   pgdata:
+
+networks:
+  pilot_network:
+    external: true

@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  web:
+  web: &default
     build:
       context: .
     command: bin/start.sh
@@ -26,6 +26,17 @@ services:
     volumes:
       - pgdata:/pgdata
 
+  karafka:
+    <<: *default
+    ports: []
+    command: bin/karafka server
+    external_links:
+      - kafka
+
 volumes:
   bundle:
   pgdata:
+
+networks:
+  pilot_network:
+    external: true
