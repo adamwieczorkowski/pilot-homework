@@ -1,0 +1,18 @@
+<h1>PaymentRequests#new</h1>
+
+<%= form_with model: @payment_request, url: payment_requests_path, method: :post do |f| %>
+  <%= f.label :amount %>
+  <%= f.number_field :amount, required: true %>
+  <br><br>
+  <%= f.label :currency %>
+  <%= f.select :currency, PaymentRequest::AVAILABLE_CURRENCIES %>
+  <br><br>
+  <%= f.label :description %>
+  <%= f.text_field :description, required: true %>
+  <br><br>
+  <%= f.submit %>
+<% end %>
+
+<br><br>
+
+<%= link_to "Return to Payment Request list", root_path %>

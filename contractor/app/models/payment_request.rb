@@ -1,4 +1,5 @@
 class PaymentRequest < ApplicationRecord
+  DEFAULT_STATUS = "pending"
   STATUSES = %w[pending accepted rejected].freeze
   AVAILABLE_CURRENCIES = %w[PLN EUR USD GBP CZK].freeze
 

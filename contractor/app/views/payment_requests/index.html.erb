@@ -1,0 +1,26 @@
+<h1>Your Payment Requests list</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_requests.each do |pr| %>
+      <tr>
+        <td><%= "#{pr.amount} #{pr.currency}" %></td>
+        <td><%= pr.description %></td>
+        <td><%= pr.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Payment Request", new_payment_request_path %>
