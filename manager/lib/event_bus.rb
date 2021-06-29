@@ -1,7 +1,6 @@
 module EventBus
   PAYMENTS_TOPIC = "payments"
 
-  PENDING_PAYMENT_REQUEST_CREATED_EVENT = "pending_payment_request_created"
   PAYMENT_REQUEST_ACCEPTED_EVENT = "payment_request_accepted"
   PAYMENT_REQUEST_REJECTED_EVENT = "payment_request_rejected"
 

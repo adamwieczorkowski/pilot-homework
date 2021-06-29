@@ -4,7 +4,9 @@ class PaymentRequestsController < ApplicationController
   include EventBus
 
   def index
-    @payment_requests = PaymentRequest.all
+    @payment_requests = PaymentRequest.all.sort_by do |pr|
+      PaymentRequest::STATUSES.index(pr.status)
+    end
   end
 
   def new
@@ -26,14 +28,12 @@ class PaymentRequestsController < ApplicationController
   def create_params
     params.require(:payment_request).permit(
       :amount, :currency, :description, :status
-    ).merge(status: PaymentRequest::DEFAULT_STATUS)
+    ).merge(status: PaymentRequest::PENDING_STATUS)
   end
 
   def emit_payment_created_event(payment_request)
     emit_event(
-      EventBus::PENDING_PAYMENT_REQUEST_CREATED_EVENT,
-      payment_request,
-      EventBus::PAYMENTS_TOPIC
+      PENDING_PAYMENT_REQUEST_CREATED_EVENT, payment_request, PAYMENTS_TOPIC
     )
   end
 end
