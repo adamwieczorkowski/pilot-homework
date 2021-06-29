@@ -2,6 +2,7 @@
 
 ## Contractor app
 in contractor directory run:
+* `docker network create pilot_network`
 * `docker-compose up --build`
 * `docker-compose run --rm web bin/rails db:create bin/rails db:migrate`
 * `docker-compose run --rm web bin/rails webpacker:install`
