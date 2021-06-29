@@ -18,9 +18,9 @@ class KarafkaApp < Karafka::App
   end
 
   consumer_groups.draw do
-    # topic :payments do
-    #   consumer PaymentsConsumer
-    # end
+    topic :payments do
+      consumer PaymentsConsumer
+    end
   end
 end
 
