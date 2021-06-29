@@ -8,12 +8,12 @@ Rails.application.eager_load!
 
 class KarafkaApp < Karafka::App
   setup do |config|
-    config.kafka.seed_brokers = %w(kafka://127.0.0.1:9092)
+    config.kafka.seed_brokers = %w(kafka://kafka:9092)
     config.kafka.start_from_beginning = false
     config.client_id = "contractor_app"
     config.backend = :inline
     config.batch_fetching = true
-    config.batch_consuming = true
+    config.batch_consuming = false
     config.logger = Logger.new(STDOUT, level: :info)
   end
 

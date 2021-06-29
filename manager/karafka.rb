@@ -13,7 +13,7 @@ class KarafkaApp < Karafka::App
     config.client_id = "manager_app"
     config.backend = :inline
     config.batch_fetching = true
-    config.batch_consuming = true
+    config.batch_consuming = false
     config.logger = Logger.new(STDOUT, level: :info)
   end
 

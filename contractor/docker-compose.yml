@@ -17,6 +17,9 @@ services:
       - bundle:/bundle
     links:
       - db
+    networks:
+      - default
+      - pilot_network
 
   db:
     image: postgres:13.3
