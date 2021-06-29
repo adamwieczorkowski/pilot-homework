@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'payment_requests#index'
+  root "payment_requests#index"
 
   resources :payment_requests, only: [:index, :new, :create]
 

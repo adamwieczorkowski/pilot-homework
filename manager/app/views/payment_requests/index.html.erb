@@ -18,8 +18,10 @@
         <td><%= pr.description %></td>
         <td><%= pr.status %></td>
         <td>
-          <%= link_to "Accept", accept_payment_request_path(id: pr.id) %>
-          <%= link_to "Reject", reject_payment_request_path(id: pr.id) %>
+          <% if pr.status.eql?(PaymentRequest::PENDING_STATUS) %>
+            <%= link_to "Accept", accept_payment_request_path(id: pr.id), method: :patch %>
+            <%= link_to "Reject", reject_payment_request_path(id: pr.id), method: :patch %>
+          <% end %>
         </td>
       </tr>
     <% end %>
